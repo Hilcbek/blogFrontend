@@ -2,7 +2,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 
 export let Axios = axios.create({
-    baseURL : 'http://localhost:4000/api',
+    baseURL : 'https://blog-znuc.onrender.com/api',
     withCredentials : true
 })
 
