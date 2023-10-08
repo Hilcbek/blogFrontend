@@ -16,10 +16,8 @@ const OwnPosts = () => {
         try {
             setLoading(true)
             let res = await Axios.get(`/post/own/posts`);
-            if(res.data.length > 0){
-                setPosts(res.data.data)
-                toast.success(`Your posts`)
-            }
+             setPosts(res.data.data)
+              toast.success(`Your posts`)
         } catch (error) {
             toast(error.response.data.error)
         }finally{

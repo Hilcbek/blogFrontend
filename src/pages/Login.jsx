@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Modal from '../../components/Modal/Modal'
 import LoginModal from '../../Hooks/LoginModal';
 import { useForm } from 'react-hook-form';
@@ -19,7 +19,8 @@ const Login = () => {
         handleSubmit,
         reset,
         formState : {
-            errors
+            errors,
+            isSubmitSuccessful
         }
     } = useForm()
     let dispatch = useDispatch()
@@ -31,10 +32,10 @@ const Login = () => {
             if(res.data){
                 dispatch(LOGIN({profile : res.data.data.profile, id : res.data.data._id}))
                 toast.success('Logged Successfully!');
-                reset({})
                 loginModal.onClose()
                 navigate('/')
             }
+        reset()
         } catch (error) {
             toast.error(error.response.data.error)
         }finally{
@@ -58,6 +59,9 @@ const Login = () => {
             <button onClick={handleFooterButton} className='mx-1 hover:text-rose-500 text-xs'>Register</button>
         </div>
     )
+    useEffect(() => {
+        reset()
+    },[isSubmitSuccessful,reset])
   return (
     <Modal
         width={'xs:w-11/12 mx-auto lg:w-3/12'}

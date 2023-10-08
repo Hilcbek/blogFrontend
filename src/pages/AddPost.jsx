@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from '../../components/Modal/Modal'
 import AddModal from '../../Hooks/AddModal'
 import { useForm } from 'react-hook-form'
@@ -10,7 +10,6 @@ import FetchRelaod from '../../Hooks/FetchReloader'
 const AddPost = () => {
   let [loading,setLoading] = useState(false);
   let location = useLocation().pathname.split("/")[1]
-  console.log(location)
   let [image,setImage] = useState('https://png.pngtree.com/png-clipart/20210606/original/pngtree-gray-network-placeholder-png-image_6398266.jpg')
   let addModal = AddModal();
   let navigate = useNavigate();
@@ -18,8 +17,10 @@ const AddPost = () => {
   const {
       register,
       handleSubmit,
+      reset,
       formState : {
-        errors
+        errors,
+        isSubmitSuccessful
       }
   } = useForm();
   let onSubmit = async (data) => {
@@ -65,6 +66,9 @@ const AddPost = () => {
       </label>
     </div>
   )
+  useEffect(() => {
+        reset()
+    },[isSubmitSuccessful,reset])
   return (
     <Modal
       open={addModal.open}

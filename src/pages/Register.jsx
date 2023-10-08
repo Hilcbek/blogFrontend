@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import RegisterModal from '../../Hooks/RegisterModal'
 import Modal from '../../components/Modal/Modal';
 import Input from '../../components/Modal/Input';
@@ -17,7 +17,8 @@ const Register = () => {
         reset,
         handleSubmit,
         formState : {
-            errors
+            errors,
+            isSubmitSuccessful
         }
     } = useForm()
     let onSubmit = async (data) => {
@@ -34,18 +35,21 @@ const Register = () => {
             let res = await Axios.post('/auth/register',{ username, email, password, profile : upload });
             if(res.data){
                 toast.success('Registerd Successfully!')
-                reset()
                 registerModal.onClose()
                 setTimeout(() => {
                     loginModal.onOpen()
                 },300)
             }
+            reset()
         } catch (error) {
             toast.error(error.response.data.error)
         }finally{
             setLoading(false)
         }
     }
+    useEffect(() => {
+        reset()
+    },[isSubmitSuccessful,reset])
     let body = (
         <div className='w-full'>
             <label htmlFor="profile" className='rounded-full my-1 mx-auto flex items-center justify-center'>
