@@ -18,7 +18,7 @@ function App() {
    <>
       <BrowserRouter>
       <Nav />
-      <Toaster position='top-center' containerStyle={{ marginTop : 100}} />
+      <Toaster position='top-center' containerStyle={{ marginTop : 70}} />
         <Routes>
           <Route path={'/'} element={<Home />} />
           <Route path={'/singlePost/:id'} element={id ? <SinglePost /> : <Navigate to={'/'} />} />
