@@ -5,7 +5,7 @@ import {BiLogIn, BiLogOut, BiMenu} from 'react-icons/bi'
 import MenuItem from './Modal/MenuItem'
 import LoginModal from '../Hooks/LoginModal'
 import { MdAccountCircle, MdOutlineDesignServices, MdOutlinePermContactCalendar } from 'react-icons/md'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { BsFillFilePostFill, BsInfoCircle } from 'react-icons/bs'
 import {ImProfile} from 'react-icons/im'
 import {GrBlog} from 'react-icons/gr'
@@ -40,9 +40,11 @@ const Nav = () => {
     },[])
     let { profile } = useSelector((state) => state.user);
     let dispatcher = useDispatch()
+    let navigate = useNavigate()
     let handleLogout = async () => {
         await Axios.post('/auth/logout');
         dispatcher(LOGOUT())
+        navigate('/')
         reload.onReload()
     }
   return (
