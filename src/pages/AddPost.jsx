@@ -7,12 +7,14 @@ import toast from 'react-hot-toast'
 import { Axios, UploadImage } from '../../libs/Axios'
 import { useLocation, useNavigate } from 'react-router-dom'
 import FetchRelaod from '../../Hooks/FetchReloader'
+import { useSelector } from 'react-redux'
 const AddPost = () => {
   let [loading,setLoading] = useState(false);
   let location = useLocation().pathname.split("/")[1]
   let [image,setImage] = useState('https://png.pngtree.com/png-clipart/20210606/original/pngtree-gray-network-placeholder-png-image_6398266.jpg')
   let addModal = AddModal();
   let navigate = useNavigate();
+  let { id } = useSelector((state) => state.user);
   const fetchReload = FetchRelaod();
   const {
       register,
@@ -34,7 +36,7 @@ const AddPost = () => {
           }else{
               upload = await UploadImage(image);
           }
-          let res = await Axios.post(`/post`,{ title, body, postImage : upload})
+          let res = await Axios.post(`/post`,{ title, body, postImage : upload, id})
           if(res.data){
             addModal.onClose()
             if(location != ""){
