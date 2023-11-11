@@ -39,7 +39,7 @@ const SinglePost = () => {
       let { title, body } = data;
         try {
           setLoading(true)
-          let res = await Axios.put(`/post/${location}`,{ title, body });
+          let res = await Axios.put(`/post/${location}`,{ title, body, id });
           if(res.data){
             toast.success('post edited successfully!')
             editModal.onClose();
