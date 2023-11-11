@@ -62,13 +62,9 @@ const Nav = () => {
                 {(reload.reload && profile) ? 
                     (
                         <div className={`${show ? 'translate-y-0 opacity-100' : '-translate-y-[10px] opacity-0'} transition duration-300 transform absolute rounded-md top-14 p-2 w-40 right-2 shadow-md bg-white flex items-start justify-start flex-col`}>
-                            <MenuItem status={show} Icon={<ImProfile  size={19}/>} label={'Profile'} onClick={() => {}} />
-                            <MenuItem status={show} Icon={<FiEdit2 size={19} />} label={'Edit Profile'} onClick={() => {}} />
-                            <MenuItem status={show} Icon={<MdOutlineDesignServices size={19} />} label={'Services'} onClick={() => {}} />
                             <Link to={'/ownPost'} className={`${show ? 'flex' : 'hidden'} w-full hover:bg-gray-50 p-2 items-center justify-start cursor-pointer font-medium text-left text-xs rounded-sm`}>
                                 <GrBlog size={19} className='mr-1' /> My Blogs
                             </Link>
-                            <MenuItem status={show} Icon={<MdOutlinePermContactCalendar size={19} />} label={'Contact'} onClick={() => {}} />
                             <MenuItem status={show} Icon={<BiLogOut size={19} />} label={'Logout'} onClick={handleLogout} />
                         </div>
                     ) : (
