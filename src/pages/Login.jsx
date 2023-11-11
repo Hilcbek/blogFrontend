@@ -28,7 +28,7 @@ const Login = () => {
       let res = await Axios.post("/auth/login", { useEmail, password });
       if (res.data) {
         dispatch(
-          LOGIN({ profile: res.data.data.profile, id: res.data.data._id })
+          LOGIN({ profile: res.data.data.profile, id: res.data.data._id, username : res.data.data.username })
         );
         reset({
           useEmail: "",

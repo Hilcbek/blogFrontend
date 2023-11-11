@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 export let Axios = axios.create({
-  baseURL: "https://blog-znuc.onrender.com/api",
+  baseURL: "http://localhost:4000/api",
   withCredentials: true,
 });
 
@@ -25,4 +25,4 @@ export let UploadImage = async (url) => {
     toast(error.response.data);
   }
 };
-//
+//https://blog-znuc.onrender.com/api
