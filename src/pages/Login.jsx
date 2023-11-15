@@ -39,8 +39,7 @@ const Login = () => {
         navigate("/");
       }
     } catch (error) {
-    //   toast.error(error.response.data.error);
-    console.log(error.response.data);
+      toast.error(error.response.data.error);
     } finally {
       setLoading(false);
     }
